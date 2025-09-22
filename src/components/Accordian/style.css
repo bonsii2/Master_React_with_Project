@@ -1,0 +1,187 @@
+/* Modern CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Accordion Container Styles */
+.accordion-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Individual Accordion Item Styles */
+.accordion {
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.accordion:last-child {
+    border-bottom: none;
+}
+
+.accordion:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Accordion Header Styles */
+.accordion>div:first-child {
+    padding: 25px 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #2d3748;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.accordion>div:first-child:hover {
+    color: #667eea;
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+}
+
+.accordion>div:first-child span {
+    font-size: 1.5em;
+    font-weight: 300;
+    color: #667eea;
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.accordion>div:first-child:hover span {
+    background: rgba(102, 126, 234, 0.2);
+    transform: scale(1.1);
+}
+
+/* Accordion Content Styles */
+.accordion>div:last-child {
+    padding: 0 30px 25px 30px;
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 1em;
+    animation: slideDown 0.3s ease-out;
+    border-left: 3px solid #667eea;
+    margin-left: 30px;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 0 0 0 10px;
+}
+
+/* Animation for smooth content reveal */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 500px;
+    }
+}
+
+/* Active state styles */
+.accordion.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.accordion.active>div:first-child {
+    color: white;
+}
+
+.accordion.active>div:first-child span {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.accordion.active>div:last-child {
+    color: white;
+    border-left-color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .accordion>div:first-child {
+        padding: 20px;
+        font-size: 1em;
+    }
+
+    .accordion>div:last-child {
+        padding: 0 20px 20px 20px;
+        margin-left: 20px;
+    }
+}
+
+/* Loading animation for better UX */
+.accordion.loading>div:last-child {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Custom scrollbar for accordion content */
+.accordion>div:last-child::-webkit-scrollbar {
+    width: 6px;
+}
+
+.accordion>div:last-child::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.accordion>div:last-child::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
+}

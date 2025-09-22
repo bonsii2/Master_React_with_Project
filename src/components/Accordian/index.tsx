@@ -1,32 +1,32 @@
 import { useState } from "react";
-import {mydata} from "./data";
-const  Accordian = () => {
-    const [selected, setSelected] = useState<number | null >(null);
-    const handleAccordian = (selectedid: number) =>{
-        setSelected(selectedid);
+import { mydata } from "./data";
+import  "./style.css";
 
-    } 
-    return (
-      <div className="container">
-        {mydata.map((data) => (
-          <div
-            className="accordian"
-            onClick={() => handleAccordian(data.id)}
-            key={data.id}
-          >
-            <div>
-              {data.question} <span>{selected == data.id ? "-" : "+"}</span>
-            </div>
-            {selected == data.id && (
-                <div>
-                    {data.answer}
-                </div>
-
-            )}
+const Accordian = () => {
+  const [selecteditems, setSelecteditems] = useState<number[]>([]);
+  const handleAccordian = (selectedid: number) => {
+    if (selecteditems.includes(selectedid)) {
+      setSelecteditems(selecteditems.filter((item) => item != selectedid));
+    } else {
+      setSelecteditems([...selecteditems, selectedid]);
+    }
+  };
+  return (
+    <div className="container">
+      {mydata.map((data) => (
+        <div
+          className="accordion"
+          onClick={() => handleAccordian(data.id)}
+          key={data.id}
+        >
+          <div>
+            {data.question}{" "}
+            <span>{selecteditems.includes(data.id) ? "-" : "+"}</span>
           </div>
-        ))}
-      </div>
-    );
-
-}
+          {selecteditems.includes(data.id) && <div>{data.answer}</div>}
+        </div>
+      ))}
+    </div>
+  );
+};
 export default Accordian;
